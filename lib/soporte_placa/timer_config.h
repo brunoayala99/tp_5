@@ -5,7 +5,7 @@
 
 //void configurar_TIM2(uint32_t duty_cycle);
 void TIM2_init(void);
-void configurar_TIM2(uint32_t angulo);
+void configurar_TIM2(int angulo);
 int32_t obtener_angulo(void);
 
 #endif

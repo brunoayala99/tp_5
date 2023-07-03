@@ -22,10 +22,10 @@ bool verificar_comandos(char * buffer, Comando_SCPI * cmd){
         return true;
     }else if(strcmp(buffer,"get_angle")==0){
         cmd->comando=GET_ANGLE;
-        cmd->comandoValido=true;
+        //cmd->comandoValido=true;
         return true;
     }else{
         cmd->comando=DESCONOCIDO;
-        return false;
+        return true;
     }
 }

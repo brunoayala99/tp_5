@@ -11,6 +11,7 @@
 int main(void) {
     // Inicializar el USART1 con un baudrate de 9600
     USART1_Init(9600);
+    TIM2_init();
     char buffer[20];
     char angulo[20];
 
@@ -29,14 +30,13 @@ int main(void) {
                     configurar_TIM2(cmd.angle);
                     break;
                 case GET_ANGLE:
-                    sprintf(angulo,"%li",obtener_angulo());
+                    snprintf(angulo,sizeof(angulo),"%li",obtener_angulo());
                     USART1_Write_String(angulo);
                     USART1_Write_String("\r\n");
                     break;
                 case SET_ANGLE:
                     if(cmd.comandoValido){
                         USART1_Write_String("angulo valido\r\n");
-
                         configurar_TIM2(cmd.angle);
                     }else{
                         USART1_Write_String("angulo invalido, debe estar entre -90° y 90°\r\n");
@@ -49,9 +49,9 @@ int main(void) {
                     break;
                 }
             }
-            //else{
-             //   USART1_Write_String("comando invalido\r\n");
-            //}
+            else{
+               USART1_Write_String("comando invalido\r\n");
+            }
             
         }
     }
