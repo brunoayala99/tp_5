@@ -1,6 +1,5 @@
-#include <soporte_placa.h>
 #include "usart_config.h"
-
+#include <stdbool.h>
 static void habilitar_reloj_usart (void){
     RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
 }
@@ -28,8 +27,8 @@ void USART1_Init(uint32_t baudrate) {
     habilitar_reloj_usart();
     habilitar_reloj_GPIOA();
     // Configurar pines para USART1 (PA9 como TX y PA10 como RX)
-    SP_Pin_setModo(SP_PA10, SP_PIN_ENTRADA);
-
+        //Configurar PA10 como entrada flotante 
+    GPIOA->CRH = (GPIOA->CRH & ~(GPIO_CRH_MODE10 | GPIO_CRH_CNF10)) |(GPIO_CRH_CNF10_0);
         //Configurar PA9 como salida funcion alternativa PUSH/PULL de velocidad media
     GPIOA->CRH = (GPIOA->CRH & ~(GPIO_CRH_CNF9 | GPIO_CRH_MODE9)) | (GPIO_CRH_MODE9_1 | GPIO_CRH_CNF9_1); 
 
@@ -53,7 +52,7 @@ bool USART1_read(char *caracter) {
 }
 
 /*Esta función lee caracteres a través de USART1 y los almacena en el buffer buffer.
- Verifica si se ha recibido el carácter de retorno de carro ('\r') o salto de línea ('\n') 
+ Verifica si se ha recibido el carácter de retorno de carry ('\r') o salto de línea ('\n') 
  para determinar el final de la cadena. La función devuelve true si se ha completado 
  la recepción de la cadena y false si el tamaño del buffer se ha alcanzado antes de 
  recibir el final de la cadena.*/

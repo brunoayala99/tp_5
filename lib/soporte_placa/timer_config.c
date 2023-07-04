@@ -1,6 +1,4 @@
-#include "soporte_placa.h"
 #include "timer_config.h"
-
 #define ANCHO_PULSO_MIN 180
 #define ANCHO_PULSO_MAX 900
 

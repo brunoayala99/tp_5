@@ -2,7 +2,7 @@
 #define USART_CONFIG_H
 
 #include "stm32f1xx.h"
-
+#include <stdbool.h>
 void USART1_Init(uint32_t baudrate);
 bool USART1_read(char *caracter);
 void USART1_write(uint8_t c);

@@ -1,5 +1,4 @@
 #include "stm32f1xx.h"
-#include "soporte_placa.h"
 #include "usart_config.h"
 #include "timer_config.h"
 #include "comandos.h"
